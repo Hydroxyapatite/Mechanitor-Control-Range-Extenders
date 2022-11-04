@@ -11,19 +11,28 @@ namespace Hydroxyapatite_MechCommandRangeExt
             new Type[] { typeof(LocalTargetInfo) })]
     internal class PatchMechanitorTracker_CanCommandTo
     {
+        static Pawn_MechanitorTracker mechanitor;
+        static int? lastCacheTick = null;
+        static float range = 0;
         static void Postfix(
             Pawn_MechanitorTracker __instance,
             LocalTargetInfo target,
             ref bool __result
             )
         {
-            if (!target.Cell.InBounds(__instance.Pawn.MapHeld))
+            mechanitor = __instance;
+            if (!target.Cell.InBounds(mechanitor.Pawn.MapHeld))
             {
                 __result = false;
             }
-            float range = (float) Math.Pow(__instance.Pawn.GetStatValue(MechanitorDefOf.Hydroxyapatite_MechCommandDistance, applyPostProcess: true, 60), 2);
+            int currentTick = Find.TickManager.TicksGame;
+            if(!lastCacheTick.HasValue || currentTick - lastCacheTick > 60)
+            {
+                lastCacheTick = currentTick;
+                range = (float)Math.Pow(mechanitor.Pawn.GetStatValue(MechanitorDefOf.Hydroxyapatite_MechCommandDistance, applyPostProcess: true, 60), 2);
+            }
             float maxRange = (float)Math.Pow(Math.Floor(GenRadial.MaxRadialPatternRadius), 2);
-            __result = __instance.Pawn.Position.DistanceToSquared(target.Cell) < Math.Min(range, maxRange);
+            __result = mechanitor.Pawn.Position.DistanceToSquared(target.Cell) < Math.Min(range, maxRange);
         }
     }
 }
