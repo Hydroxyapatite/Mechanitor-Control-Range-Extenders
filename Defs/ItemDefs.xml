@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Command sublink -->
+	<ThingDef Abstract="True" Name="Hydroxyapatite_CommandSublinkBase" ParentName="MechanitorImplantCraftableBase">
+		<descriptionHyperlinks>
+			<HediffDef>Hydroxyapatite_CommandSublinkImplant</HediffDef>
+		</descriptionHyperlinks>
+		<statBases>
+			<MaxInstallCount>3</MaxInstallCount>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef ParentName="Hydroxyapatite_CommandSublinkBase">
+		<defName>Hydroxyapatite_CommandSublink</defName>
+		<label>command sublink</label>
+		<description>A neural implant which increases a mechanitor's command range.\n\nThis standard-tier sublink can only increase the control group count up to 3. To go higher, a higher-tier sublink implant must be used.\n\nThis implant can increase the command range up to 40 tiles.\n\nIt can be self-installed without surgery.\n\nThis implant can be installed up to 3 times to increase its effect.</description>
+		<costList>
+			<SignalChip>1</SignalChip>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>StandardMechtech</researchPrerequisite>
+		</recipeMaker>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<compClass>CompUsableImplant</compClass>
+				<useJob>UseItem</useJob>
+				<useLabel>Implant sublink</useLabel>
+				<userMustHaveHediff>MechlinkImplant</userMustHaveHediff>
+			</li>
+			<li Class="CompProperties_UseEffectInstallImplant">
+				<hediffDef>Hydroxyapatite_CommandSublinkImplant</hediffDef>
+				<bodyPart>Brain</bodyPart>
+				<canUpgrade>true</canUpgrade>
+				<maxSeverity>3</maxSeverity>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Hydroxyapatite_CommandSublinkBase">
+		<defName>Hydroxyapatite_CommandSublinkHigh</defName>
+		<label>command sublink (high)</label>
+		<description>A neural implant which increases a mechanitor's command range. \n\nThis high-tier implant can increase the command range up to 55.\n\nIt can be self-installed without surgery.\n\nThis implant can be installed up to 3 times to increase its effect.</description>
+		<costList>
+			<PowerfocusChip>1</PowerfocusChip>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<ComponentSpacer>3</ComponentSpacer>
+		</costList>
+		<recipeMaker>
+			<researchPrerequisite>HighMechtech</researchPrerequisite>
+		</recipeMaker>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<compClass>CompUsableImplant</compClass>
+				<useJob>UseItem</useJob>
+				<useLabel>Implant high sublink</useLabel>
+				<userMustHaveHediff>MechlinkImplant</userMustHaveHediff>
+			</li>
+			<li Class="CompProperties_UseEffectInstallImplant">
+				<hediffDef>Hydroxyapatite_CommandSublinkImplant</hediffDef>
+				<bodyPart>Brain</bodyPart>
+				<canUpgrade>true</canUpgrade>
+				<requiresExistingHediff>true</requiresExistingHediff>
+				<minSeverity>3</minSeverity>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<HediffDef>
+		<defName>Hydroxyapatite_CommandSublinkImplant</defName>
+		<hediffClass>Hediff_Level</hediffClass>
+		<descriptionHyperlinks>
+			<ThingDef>Hydroxyapatite_CommandSublink</ThingDef>
+		</descriptionHyperlinks>
+		<label>command sublink</label>
+		<description>An implant which increases a mechanitor's command range.\n\nThis implant can be installed up to 6 times to increase its effect.</description>
+		<defaultLabelColor>(0.6, 0.6, 1.0)</defaultLabelColor>
+		<isBad>false</isBad>
+		<priceImpact>true</priceImpact>
+		<initialSeverity>1</initialSeverity>
+		<!-- Severity is bound to level of implant -->
+		<minSeverity>0</minSeverity>
+		<maxSeverity>6</maxSeverity>
+		<keepOnBodyPartRestoration>True</keepOnBodyPartRestoration>
+		<levelIsQuantity>true</levelIsQuantity>
+		<stages>
+			<li>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>5</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>2</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>10</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>3</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>15</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>4</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>20</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>5</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>25</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>6</minSeverity>
+				<statOffsets>
+					<Hydroxyapatite_MechCommandDistance>31</Hydroxyapatite_MechCommandDistance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>
