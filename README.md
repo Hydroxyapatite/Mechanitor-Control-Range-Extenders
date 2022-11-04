@@ -3,4 +3,4 @@ This mod adds implants which increase a mechanitor's command range, by 5 per imp
 
 Future plans include a structure which projects a command radius around it, but I have no timeline on when I'll be making that.
 
-This mod is currently incompatible with my [Mechanitor Psy-Sensitive Control Range](https://github.com/Hydroxyapatite/Mechanitor-Psy-Sensitive-Control-Range) mod.
+This mod is compatible with my [Mechanitor Psy-Sensitive Control Range](https://github.com/Hydroxyapatite/Mechanitor-Psy-Sensitive-Control-Range) mod.
